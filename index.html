@@ -4,59 +4,111 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Responsive Bootstrap Cards</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>My Website</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .skills-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card-text,
+        .card-title {
+            text-align: center;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                <div class="card">
-                    <img src="posa.jpg" class="card-img-top" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">I MISS YOU</h5>
-                        <p class="card-text">MAGKITA NA TAYO PLEASE</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
+
+    <div class="container-fluid p-5 text-white text-center" style="background-color: maroon;">
+        <div class="h1">Justine Chan's Activities</div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-5 mb-4">
+                <img src="img/prof.jpg" alt="Profile" class="img-fluid rounded-4 shadow">
             </div>
-            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                <div class="card">
-                    <img src="posa.jpg" class="card-img-top" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">I MISS YOU</h5>
-                        <p class="card-text">MAGKITA NA TAYO PLEASE</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                <div class="card">
-                    <img src="posa.jpg" class="card-img-top" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">I MISS YOU</h5>
-                        <p class="card-text">MAGKITA NA TAYO PLEASE</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                <div class="card">
-                    <img src="posa.jpg" class="card-img-top" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">I MISS YOU</h5>
-                        <p class="card-text">MAGKITA NA TAYO PLEASE</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
+            <div class="col-md-7">
+                <h2 class="fw-bold mb-3">About Me</h2>
+                <p>I'm Justine Chan, a DIT student with a strong passion for game development. Skilled in HTML, CSS, and JavaScript, I enjoy crafting engaging and interactive experiences, aiming to bring creative game ideas to life through the power of web technologies.
+                    </p>
+                <h4 class="mt-4 fw-bold">Skills</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><strong>✅ Accountability:</strong> Takes ownership of tasks and commitments,
+                        ensuring transparency and reliability.</li>
+                    <li class="mb-2"><strong>🛠️ Quality Assurance:</strong> Focused on delivering high-quality work by
+                        adhering to standards and thorough testing.</li>
+                    <li class="mb-2"><strong>💻 Web Development Skills:</strong> Proficient in JavaScript, CSS, HTML,
+                        and Bootstrap for building responsive web applications.</li>
+                    <li class="mb-2"><strong>🗄️ Database Management:</strong> Experienced in designing and managing
+                        databases for efficient data storage and retrieval.</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    <div class="container my-5">
+        <h2 class="section-title text-center mb-3">Activities</h2>
+        <p class="text-center mb-5">Specializing in website design and development, creating user-friendly and visually
+            appealing experiences.</p>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+            <div class="col">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="card-icon mb-2">📄</div>
+                        <h5 class="card-title">Activity 4</h5>
+                        <a href="A04/index.html" class="btn btn-outline-primary mt-2">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="card-icon mb-2">📄</div>
+                        <h5 class="card-title">Activity 5</h5>
+                        <a href="#" class="btn btn-outline-primary mt-2">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <div class="card-icon mb-2">📄</div>
+                        <h5 class="card-title">Activity 6</h5>
+                        <a href="#" class="btn btn-outline-primary mt-2">View</a>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 </body>
 
