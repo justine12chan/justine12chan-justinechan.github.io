@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canada - Country Overview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" href="../img/icon.png" type="image/x-icon">
+    <style>
+        body {
+            background-image: url('../img/BG.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-color: black;
+            color: white;
+        }
+
+        h1,
+        h2 {
+            color: #ff0000;
+            margin-top: 2rem;
+        }
+
+        .nav-tabs .nav-link {
+            color: #ff0000;
+            border: 1px solid #ff0000;
+            margin: 0 0.3rem;
+            background-color: transparent;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: #ff0000;
+            color: white;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.75);
+            border: 1px solid #ff0000;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .card-title {
+            color: #ff0000;
+        }
+
+        .card-text {
+            color: #f0f0f0;
+        }
+
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .card-img-top {
+                height: 180px;
+            }
+        }
+
+        .container-fluid {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .carousel-inner img {
+            object-fit: cover;
+            height: 400px;
+            border-radius: 15px;
+        }
+
+        .carousel-item {
+            transition: transform 0.6s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar bg-dark p-3">
+        <a href="../index.html" class="nav-link text-white">
+            <h2 class="m-0">🏠︎ Home</h2>
+        </a>
+    </nav>
+
+    <div class="container-fluid text-center">
+        <h1>Exploring the Foundations of Canada </h1>
+
+        <div class="hero-section mt-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1>Discover Canada's Most Stunning Destinations</h1>
+                        <p class="lead">From natural wonders to vibrant cities, explore what makes Canada truly unique.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                            </div>
+                            <div class="carousel-inner rounded">
+                                <div class="carousel-item active">
+                                    <img src="../img/banff.jpg" class="d-block w-100" alt="Banff National Park">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Banff National Park</h5>
+                                        <p>Explore the beauty of the Canadian Rockies.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../img/niagra.jpg" class="d-block w-100" alt="Niagara Falls">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Niagara Falls</h5>
+                                        <p>Witness the power of nature at its finest.</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../img/skyline.jpg" class="d-block w-100" alt="Toronto Skyline">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Toronto Skyline</h5>
+                                        <p>Experience the vibrant energy of Canada's largest city.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <h2 class="mt-5">Fun Facts About Canada</h2>
+        <div class="row justify-content-center">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../img/hockey.jpg" class="card-img-top" alt="Fun Fact 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Hockey is Life</h5>
+                        <p class="card-text">Ice hockey is Canada's official winter sport and one of the most popular pastimes across the country.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 sm-2">
+                <div class="card">
+                    <img src="../img/maple.jpg" class="card-img-top" alt="Fun Fact 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Maple Syrup Capital</h5>
+                        <p class="card-text">Canada produces over 70% of the world’s maple syrup, mostly from the province of Quebec.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../img/map.jpg" class="card-img-top" alt="Fun Fact 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Second Largest Country</h5>
+                        <p class="card-text">Canada is the second-largest country in the world by total area, after Russia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../img/beaver.jpg" class="card-img-top" alt="Fun Fact 4">
+                    <div class="card-body">
+                        <h5 class="card-title">National Animal</h5>
+                        <p class="card-text">The beaver is Canada's national animal, symbolizing industriousness and perseverance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../img/language.jpg" class="card-img-top" alt="Fun Fact 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Two Official Languages</h5>
+                        <p class="card-text">Canada has two official languages: English and French, reflecting its colonial history.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../img/coastline.jpg" class="card-img-top" alt="Fun Fact 6">
+                    <div class="card-body">
+                        <h5 class="card-title">Longest Coastline</h5>
+                        <p class="card-text">Canada has the longest coastline in the world — more than 202,000 kilometers of stunning shoreline!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
