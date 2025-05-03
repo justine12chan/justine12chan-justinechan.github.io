@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rick's Rolodex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="../img/icon.png" type="image/x-icon">
+
+    <style>
+        body {
+            background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364);
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+        }
+
+        h2 {
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .glow-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glow-card:hover {
+            box-shadow: 0 12px 42px rgba(0, 255, 255, 0.4), 0 0 10px rgba(0, 255, 255, 0.1);
+            transform: scale(1.01);
+        }
+
+        .form-control {
+            border-radius: 25px;
+            background-color: #ffffff11;
+            color: #fff;
+            border: 1px solid #00fff7;
+            padding: 10px 20px;
+        }
+
+        .form-control::placeholder {
+            color: #ccc;
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, #00fff7, #3be8b0);
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 12px #00fff7;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px #00fff7, 0 0 40px #3be8b0;
+            transform: scale(1.05);
+        }
+
+        .character-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #2b2d42;
+            border-radius: 15px;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            margin: 2rem auto;
+        }
+
+        .character-card img {
+            border-radius: 10px;
+            width: 180px;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .character-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-info .status {
+            font-weight: bold;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: limegreen;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .meta-info {
+            font-size: 0.95rem;
+            margin-top: 10px;
+            color: #ccc;
+        }
+
+        .meta-info span {
+            display: block;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+
+    <div class="container-fluid py-4 text-center" style="background-color: #0f2027;">
+        <a href="../index.html" class="home-btn position-absolute top-0 start-0 m-3 text-white">🏠︎ Home</a>
+        <h2 class="text-white"> Rick's Rolodex</h2>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="glow-card text-center mx-auto" style="max-width: 500px;">
+                    <form>
+                        <input type="text" class="form-control mb-3" id="characterNameSearch"
+                            placeholder="Search the multiverse (e.g. Pickle Rick)">
+                        <button type="button" onclick="getCharacter()" class="btn btn-glow">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4" id="characterMainContainer" style="display: none;">
+        <div class="character-card">
+            <img id="img" src="" alt="Character Image">
+            <div class="character-info">
+                <h3 id="name">Character Name</h3>
+                <p class="status">
+                    <span class="status-dot"></span><span id="status">Status</span> - <span id="species">Species</span>
+                </p>
+                <div class="meta-info">
+                    <span id="location">Last known location: Unknown</span>
+                    <span id="origin">First seen in: Unknown</span>
+                    <span id="gender">Gender: Unknown</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const getCharacter = async () => {
+            document.getElementById("characterMainContainer").style.display = "block";
+
+            const characterNameSearch = document.getElementById("characterNameSearch").value.toLowerCase().trim();
+            const response = await fetch("https://rickandmortyapi.com/api/character/?name=" + characterNameSearch);
+            const data = await response.json();
+            const character = data.results[0];
+
+            document.getElementById("name").innerText = character.name;
+            document.getElementById("status").innerText = character.status;
+            document.getElementById("species").innerText = character.species;
+            document.getElementById("gender").innerText = "Gender: " + character.gender;
+            document.getElementById("img").src = character.image;
+            document.getElementById("location").innerText = "Last known location: " + character.location.name;
+            document.getElementById("origin").innerText = "First seen in: " + character.origin.name;
+
+            const statusDot = document.querySelector(".status-dot");
+            const statusColors = {
+                "alive": "limegreen",
+                "dead": "red",
+                "unknown": "gray"
+            };
+
+            const characterStatus = character.status.toLowerCase();
+            if (statusColors[characterStatus]) {
+                statusDot.style.backgroundColor = statusColors[characterStatus];
+                document.getElementById("status").style.color = statusColors[characterStatus];  
+            } else {
+                statusDot.style.backgroundColor = "gray";
+                document.getElementById("status").style.color = "gray"; 
+            }
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
