@@ -10,45 +10,32 @@
 
   <style>
     body {
-      background: linear-gradient(135deg, #e8e8e8, #d2d2d2);
       font-family: 'Poppins', sans-serif;
     }
 
     header {
       background: #4B6587;
       color: white;
-      padding: 2rem 2rem 2rem 6rem;
-      text-align: center;
+      padding: 2rem 3rem;
       border-bottom-left-radius: 40px;
       border-bottom-right-radius: 40px;
-      position: relative;
     }
 
-    .home-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: white;
-      color: #4B6587;
+    header a {
+      font-size: 1.5rem;
       font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 30px;
       text-decoration: none;
-      border: 2px solid #4B6587;
-      transition: 0.3s;
+      color: white;
     }
 
-    .home-btn:hover {
-      background: #4B6587;
-      color: white;
-      text-decoration: none;
+    header a:hover {
+      text-decoration: underline;
     }
 
     .card-custom {
       border: none;
       border-radius: 15px;
       overflow: hidden;
-      background-color: #ffffff;
       cursor: pointer;
       transition: transform 0.3s, box-shadow 0.3s;
     }
@@ -63,60 +50,123 @@
       transform: translateY(-8px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
+
+    #fullImgBox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    #fullImg {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    #closeBtn {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
   </style>
 </head>
 
-<body>
+<body id="body">
 
-  <header class="d-flex align-items-center justify-content-center position-relative">
-    <a href="../index.html" class="home-btn position-absolute top-0 start-0 m-3">🏠︎ Home</a>
-    <h1>World’s Most Renowned Paintings</h1>
+  <header class="d-flex flex-row align-items-center justify-content-between">
+    <div>
+      <a href="../index.html">🏠︎ Home</a>
+    </div>
+    <div>
+      World’s Most Renowned Paintings
+    </div>
+    <div>
+      <button id="colorBtn" onclick="changeMode()" class="btn btn-light">Dark Mode</button>
+    </div>
   </header>
 
   <div class="container my-5">
     <div class="row g-4" id="container-row">
     </div>
   </div>
-
-  <div class="modal fade" id="paintingModal" tabindex="-1" aria-labelledby="paintingModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content bg-light">
-        <div class="modal-header">
-          <h5 class="modal-title" id="paintingModalLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <img id="modalImage" src="" class="img-fluid rounded" alt="Painting">
-          <p class="mt-3" id="modalDescription"></p>
-        </div>
-      </div>
-    </div>
+  <div id="fullImgBox">
+    <img id="fullImg" alt="Full Image">
+    <button id="closeBtn">Close</button>
   </div>
 
   <script>
-    function openModal(title, image, description) {
-      var modalTitle = document.getElementById("paintingModalLabel");
-      var modalImage = document.getElementById("modalImage");
-      var modalDescription = document.getElementById("modalDescription");
+    var mode = "light";
+    function changeMode() {
+      var body = document.getElementById("body");
+      var colorBtn = document.getElementById("colorBtn");
+      mode = mode == "light" ? "dark" : "light";
+      var btnText = mode == "dark" ? "Light Mode" : "Dark Mode";
+      var btnClass = mode == "dark" ? "btn-light" : "btn-dark";
 
-      modalTitle.innerText = title;
-      modalImage.src = image;
-      modalDescription.innerText = description;
-
-      var myModal = new bootstrap.Modal(document.getElementById('paintingModal'));
-      myModal.show();
+      colorBtn.innerHTML = btnText;
+      colorBtn.className = "btn " + btnClass;
+      body.setAttribute("data-bs-theme", mode);
     }
 
-    var titles = ["Mona Lisa", "Starry Night", "The Persistence of Memory", "The Scream", "Girl with a Pearl Earring", "The Last Supper", "The Birth of Venus", "The Night Watch", "The Arnolfini Portrait", "The Kiss", "The Creation of Adam", "The Garden of Earthly"];
-    var pictures = ["monalisa.jpg", "starrynight.jpg", "persistenceofmemory.jpg", "scream.jpg", "pearl.jpg", "lastsupper.jpg", "birthofvenus.jpg", "nightwatch.jpg", "arnolfini.jpg", "thekiss.jpg", "creationofadam.jpg", "gardenofearthlydelights.jpg"];
-    var contents = ["Leonardo da Vinci's famous portrait known for its enigmatic smile.", "Van Gogh’s iconic swirling night sky.", "Dalí’s surreal depiction of melting clocks.", "Munch’s portrayal of anxiety and despair.", "Vermeer’s delicate painting of a girl with a pearl earring.", "Da Vinci’s grand depiction of Jesus' final meal.", "Botticelli’s depiction of Venus rising from the sea.", "Rembrandt’s dramatic and powerful portrayal of a militia group.", "Jan van Eyck’s detailed and intimate portrait of a couple.", "Gustav Klimt’s romantic and golden depiction of a couple’s embrace.", "Michelangelo’s divine fresco depicting the creation of Adam.", "Hieronymus Bosch’s triptych that explores themes of heaven, earth, and hell."];
-    var rowElement = document.getElementById("container-row");
+    function openFullImg(img) {
+      fullImgBox.style.display = "flex";
+      fullImg.src = img;
+    }
 
-    for (var i = 0; i < titles.length; i++) {
-      rowElement.innerHTML += `<div class="col-12 col-sm-6 col-md-4 col-lg-3"><div class="card card-custom shadow-sm" onclick="openModal('${titles[i]}', 'img/${pictures[i]}', '${contents[i]}')"><img src="img/${pictures[i]}" class="card-img-top" alt="${titles[i]}"><div class="card-body text-center"><h5 class="card-title">${titles[i]}</h5><p class="card-text small">${contents[i]}</p></div></div></div>`;}
+    const fullImgBox = document.getElementById("fullImgBox");
+    const fullImg = document.getElementById("fullImg");
+    const closeBtn = document.getElementById("closeBtn");
+
+    closeBtn.onclick = function () {
+      fullImgBox.style.display = "none";
+    };
+
+    function inquireMouseEnter() {
+      closeBtn.style.backgroundColor = "rgb(239, 239, 239)";
+      closeBtn.classList.add("shadow");
+    }
+
+    function inquireMouseLeave() {
+      closeBtn.style.backgroundColor = "transparent";
+      closeBtn.classList.remove("shadow");
+    }
+
+    closeBtn.addEventListener("mouseenter", inquireMouseEnter);
+    closeBtn.addEventListener("mouseleave", inquireMouseLeave);
+
+    const titles = ["Mona Lisa", "Starry Night", "The Persistence of Memory", "The Scream", "Girl with a Pearl Earring", "The Last Supper", "The Birth of Venus", "The Night Watch", "The Arnolfini Portrait", "The Kiss", "The Creation of Adam", "The Garden of Earthly Delights"];
+    const pictures = ["monalisa.jpg", "starrynight.jpg", "persistenceofmemory.jpg", "scream.jpg", "pearl.jpg", "lastsupper.jpg", "birthofvenus.jpg", "nightwatch.jpg", "arnolfini.jpg", "thekiss.jpg", "creationofadam.jpg", "gardenofearthlydelights.jpg"];
+    const contents = ["Leonardo da Vinci's famous portrait known for its enigmatic smile.", "Van Gogh’s iconic swirling night sky.", "Dalí’s surreal depiction of melting clocks.", "Munch’s portrayal of anxiety and despair.", "Vermeer’s delicate painting of a girl with a pearl earring.", "Da Vinci’s grand depiction of Jesus' final meal.", "Botticelli’s depiction of Venus rising from the sea.", "Rembrandt’s dramatic and powerful portrayal of a militia group.", "Jan van Eyck’s detailed and intimate portrait of a couple.", "Gustav Klimt’s romantic and golden depiction of a couple’s embrace.", "Michelangelo’s divine fresco depicting the creation of Adam.", "Hieronymus Bosch’s triptych that explores themes of heaven, earth, and hell."];
+
+    const rowElement = document.getElementById("container-row");
+
+    for (let i = 0; i < titles.length; i++) {
+      rowElement.innerHTML += '<div class="col-12 col-sm-6 col-md-4 col-lg-3">' +
+        '<div class="card card-custom shadow-sm" onclick="openFullImg(\'img/' + pictures[i] + '\')">' +
+        '<img src="img/' + pictures[i] + '" class="card-img-top" alt="' + titles[i] + '">' +
+        '<div class="card-body text-center">' +
+        '<h5 class="card-title">' + titles[i] + '</h5>' +
+        '<p class="card-text small">' + contents[i] + '</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    }
+
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
